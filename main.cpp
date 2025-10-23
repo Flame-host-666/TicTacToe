@@ -130,4 +130,8 @@ public:
 
         return false;
     }
+
+    bool checkDraw() {
+        return movesCount == 9 && !checkWin();
+    }
 };
