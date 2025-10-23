@@ -134,4 +134,9 @@ public:
     bool checkDraw() {
         return movesCount == 9 && !checkWin();
     }
+
+    void switchPlayer() {
+        currentPlayer = (currentPlayer == 'X') ? 'O' : 'X';
+        std::cout << "\n🎮 Теперь ходит " << getCurrentPlayerName() << " (" << currentPlayer << ")\n";
+    }
 };
