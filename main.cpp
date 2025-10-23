@@ -1,4 +1,5 @@
 #include <iostream>
+#include <sstream>
 #include <vector>
 
 class TicTacToe {
@@ -21,5 +22,22 @@ public:
         movesCount = 0;
         playerXName = "Игрок X";
         playerOName = "Игрок O";
+    }
+
+    void setPlayerNames() {
+        std::cout << "Введите имя для игрока X: ";
+        std::getline(std::cin, playerXName);
+        if (playerXName.empty()) playerXName = "Игрок X";
+
+        std::cout << "Введите имя для игрока O: ";
+        std::getline(std::cin, playerOName);
+        if (playerOName.empty()) playerOName = "Игрок O";
+
+        std::cout << "\n" << playerXName << " играет за X\n";
+        std::cout << playerOName << " играет за O\n\n";
+    }
+
+    std::string getCurrentPlayerName() {
+        return (currentPlayer == 'X') ? playerXName : playerOName;
     }
 };
