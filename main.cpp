@@ -139,4 +139,28 @@ public:
         currentPlayer = (currentPlayer == 'X') ? 'O' : 'X';
         std::cout << "\n🎮 Теперь ходит " << getCurrentPlayerName() << " (" << currentPlayer << ")\n";
     }
+
+    bool getPlayerInput(int& row, int& col) {
+        std::string input;
+        std::cout << "➡️  " << getCurrentPlayerName() << " (" << currentPlayer << "), ваш ход: ";
+
+        if (!std::getline(std::cin, input)) {
+            return false;
+        }
+
+        std::stringstream ss(input);
+
+        if (!(ss >> row >> col)) {
+            std::cout << "❌ Ошибка: введите два числа через пробел!\n";
+            return false;
+        }
+
+        std::string extra;
+        if (ss >> extra) {
+            std::cout << "❌ Ошибка: введите только два числа!\n";
+            return false;
+        }
+
+        return true;
+    }
 };
