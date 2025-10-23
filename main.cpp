@@ -1,6 +1,7 @@
 ﻿#include <iostream>
 #include <sstream>
 #include <vector>
+#include <string>
 
 class TicTacToe {
 private:
@@ -239,3 +240,25 @@ public:
         std::cout << "\nИгра завершена.\n";
     }
 };
+
+void displayHeader() {
+    std::cout << "=========================================\n";
+    std::cout << "           КРЕСТИКИ-НОЛИКИ\n";
+    std::cout << "          Полная версия 1.0\n";
+    std::cout << "=========================================\n";
+}
+
+int main() {
+    // Установка русской локали для корректного отображения символов
+    setlocale(LC_ALL, "Russian");
+
+    displayHeader();
+
+    TicTacToe game;
+    game.playGame();
+
+    std::cout << "\nНажмите Enter для выхода...";
+    std::cin.get();
+
+    return 0;
+}
