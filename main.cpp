@@ -79,4 +79,30 @@ public:
         std::cout << "• Пример: '2 2' - нижний правый угол\n";
         std::cout << "==================\n\n";
     }
+
+    bool isValidMove(int row, int col) {
+        if (row < 0 || row >= 3 || col < 0 || col >= 3) {
+            std::cout << "❌ Ошибка: координаты должны быть от 0 до 2!\n";
+            return false;
+        }
+
+        if (board[row][col] != ' ') {
+            std::cout << "❌ Ошибка: эта клетка уже занята!\n";
+            return false;
+        }
+
+        return true;
+    }
+
+    bool makeMove(int row, int col) {
+        if (!isValidMove(row, col)) {
+            return false;
+        }
+
+        board[row][col] = currentPlayer;
+        movesCount++;
+
+        std::cout << "✅ " << getCurrentPlayerName() << " поставил " << currentPlayer << " в (" << row << "," << col << ")\n";
+        return true;
+    }
 };
