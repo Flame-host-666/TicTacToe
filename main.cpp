@@ -177,4 +177,65 @@ public:
 
         std::cout << "═══════════════════════════════════\n";
     }
+
+    void playGame() {
+        std::cout << "🎮 ДОБРО ПОЖАЛОВАТЬ В КРЕСТИКИ-НОЛИКИ! 🎮\n";
+        std::cout << "=========================================\n";
+
+        setPlayerNames();
+        displayInstructions();
+
+        std::cout << "🎯 Игра начинается! " << playerXName << " ходит первым.\n";
+
+        while (!gameOver) {
+            displayBoard();
+
+            int row, col;
+            if (!getPlayerInput(row, col)) {
+                continue;
+            }
+
+            if (makeMove(row, col)) {
+                if (checkWin()) {
+                    displayBoard();
+                    displayGameResult();
+                    gameOver = true;
+                }
+                else if (checkDraw()) {
+                    displayBoard();
+                    displayGameResult();
+                    gameOver = true;
+                }
+                else {
+                    switchPlayer();
+                }
+            }
+        }
+
+        offerRestart();
+    }
+
+    void offerRestart() {
+        std::cout << "\n🔄 Хотите сыграть еще раз?\n";
+        std::cout << "1 - Да, новая игра\n";
+        std::cout << "2 - Нет, выйти\n";
+        std::cout << "Выберите вариант: ";
+
+        std::string choice;
+        std::getline(std::cin, choice);
+
+        if (choice == "1") {
+            std::cout << "\n✨ Начинаем новую игру!\n";
+            std::cout << "=========================================\n";
+            initializeGame();
+            playGame();
+        }
+        else {
+            std::cout << "\n👋 Спасибо за игру! До свидания!\n";
+        }
+    }
+
+    ~TicTacToe() {
+        std::cout << "\nИгра завершена.\n";
+    }
 };
